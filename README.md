@@ -1,1 +1,2 @@
 # GFlowChess
+test
