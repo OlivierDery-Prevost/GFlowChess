@@ -1,0 +1,2 @@
+chess==1.10.0
+gflownet @ https://github.com/alexhernandezgarcia/gflownet/archive/main.zip#sha256=e6ce13ad4f67db0b0cfb37cbccf7f872a6c887d2bb1e376a34e058290a20bc72
