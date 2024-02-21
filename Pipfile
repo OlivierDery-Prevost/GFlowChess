@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-chess = "==1.10.0"
+chess = "*"
 gflownet = {file = "https://github.com/alexhernandezgarcia/gflownet/archive/main.zip"}
 numpy = "*"
 matplotlib = "*"
