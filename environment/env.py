@@ -30,40 +30,27 @@ class GFlowChessEnv(GFlowNetEnv):
       state2readable(), readable2state().
     """
 
-    # DONE
-    def __init__(self, next_play_func: Callable[[Board], Board], move2action: Callable[[Move], Tuple[int]]):
+    def __init__(self):
         """
         Instantiate a new GFlowChess environment.
 
         Parameters
         ----------
 
-        next_play: Callable[[Board], Board]
-            This function will be used to generate the next play of the model's
-            opponent and returns the updated board. Typically, this would be a
-            function for calling the next move from stockfish and returning the
-            corresponding board.
-
-        move2action: Callable,
-            This function is used to convert a move from python-chess into an
-            action.
         """
-        self.board = chess.Board()  # Current state of the game
-        self.state: List[Tuple[int]] = []  # NOTE: This is a sequence of actions.
-        self.move2action = (
-            move2action  # TODO: This function should be a part of the environment, not an external function
-        )
-        self.next_play_func = next_play_func
+        self.board = chess.Board()  # Current board of the game
+        self.select_piece_action = [(i,0) for i in range(16)] # Up to 16 pieces to select
+        self.select_move_action = [(0,j) for j in range(64)] # up to 64 different positions on the board
 
-    # TODO
+    # DONE
     def get_action_space(self) -> List[Tuple]:
         """
         Constructs list with all possible actions (excluding end of
-        sequence).
+        sequence) and including illegal actions.
         """
-        # All the legal actions:
+        # *All* the actions:
         assert isinstance(self.board, Board)
-        return list(self.board.legal_moves)
+        return self.select_piece_action + self.select_move_action
 
     # TODO
     def step(
